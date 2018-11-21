@@ -138,7 +138,7 @@ function Search-Splunk
 			        	{$_.k -eq "source"}		    { $Myobj.Add("Source",$_.value.text);continue }
 						{$_.k -eq "sourcetype"}		{ $Myobj.Add("SourceType",$_.value.text);continue }
 				        {$_.k -eq "splunk_server"}	{ $Myobj.Add("SplunkServer",$_.value.text);continue }
-						{$_.k -eq "_raw"}			{ $Myobj.Add("raw",$_.v.'#text');continue}
+						{$_.k -eq "_raw"}			{ $Myobj.Add("raw",$_.v.InnerText);continue}
 				        {$_.k -eq "_time"}			{ $Myobj.Add("Date",(ConvertFrom-SplunkSearchResultTime $_.value.text));continue}
 						Default						{ $Myobj.Add($_.k,$_.value.text);continue}
 				    }
